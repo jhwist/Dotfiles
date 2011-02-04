@@ -4,6 +4,8 @@
 
 require 'fileutils'
 
+task :default => :install
+
 desc "Install dotfiles in user's HOME directory"
 task :install do
   replace_all = false
@@ -15,7 +17,7 @@ task :install do
     else
       dest = "#{home}/.#{file}"
       if !File.exist?(dest) 
-        puts "Copying #{file} to #{dest}"
+        puts "copying #{file} to #{dest}"
         copy(file, dest)
       elsif replace_all
         replace_file(file,dest)
@@ -38,5 +40,6 @@ task :install do
 end
 
 def replace_file(file, dest)
-  puts "Nuking #{dest}"
+  rm(dest)
+  copy(file,dest)
 end

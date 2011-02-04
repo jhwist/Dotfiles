@@ -1,6 +1,9 @@
 # vim: ft=ruby
 require 'rubygems'
-require 'win32/Console/ANSI'
+begin
+  require 'win32/Console/ANSI'
+rescue LoadError => e
+end
 require 'irb/completion'
 require 'irb/ext/save-history'
 
