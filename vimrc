@@ -52,9 +52,6 @@ map <silent> <m-n> :cn <cr>
 
 "autocmd BufNewFile,BufRead  *.tex source ~/.vim/tex
 autocmd BufNewFile,BufRead *_spec.rb compiler rspec
-autocmd BufNewFile,BufRead  /tmp/mutt* source ~/.vim/mutt
-autocmd BufNewFile,BufRead  *article* source ~/.vim/mutt
-autocmd BufNewFile,BufRead  *letter* source ~/.vim/mutt
 autocmd BufNewFile,BufRead  [Mm]akefile* set nosmarttab
 autocmd BufReadPre */src/*  set patchmode=.orig
 autocmd BufReadPre /var/log/* set nowrap
@@ -63,6 +60,8 @@ autocmd BufReadPre */usr/ports/*  set patchmode=.orig
 autocmd! BufReadPre,FileReadPre   *.gz set bin
 autocmd  BufReadPost,FileReadPost *.gz '[,']!gunzip
 autocmd  BufReadPost,FileReadPost *.gz set nobin
+
+" Vish - shell in vim
 map __start :imap  __cmd|imap  __end
 noremap __end :iunmap <CR>|iunmap :"Vish ended.0f!xx
 noremap __cmd 0f$ly$:r !";echo $PS1A 
