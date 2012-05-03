@@ -16,6 +16,12 @@ task :install do
       puts "Unable to determine HOME directory. Forgot to export $HOME?"
     else
       dest = "#{home}/.#{file}"
+      if File.exist?(dest)
+        if FileUtils.identical?(file,dest)
+          puts "skipping identical '#{file}'"
+          next
+        end
+      end
       if !File.exist?(dest) 
         puts "copying #{file} to #{dest}"
         copy(file, dest)
@@ -40,6 +46,10 @@ task :install do
 end
 
 def replace_file(file, dest)
-  rm(dest)
-  copy(file,dest)
+  if !FileUtils.uptodate?(file, dest)
+    puts "Destination #{dest} is newer than source #{file}, skipping"
+  else
+    rm(dest)
+    copy(file,dest)
+  end
 end
