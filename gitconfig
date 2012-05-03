@@ -1,3 +1,15 @@
+# vim: sw=2:ts=2:expandtab:ai
 [user]
-	name = Henrik Wist
-	email = henrik.wist@titanias.org
+  name = Henrik Wist
+  email = henrik.wist@titanias.org
+[color]
+  ui = auto
+[alias]
+  st = status
+  ci = commit
+  co = checkout
+  di = diff
+  aa = add --all
+  b = branch
+[merge]
+  tool = vimdiff
