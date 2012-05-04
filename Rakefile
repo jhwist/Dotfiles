@@ -28,13 +28,15 @@ task :install do
       elsif replace_all
         replace_file(file,dest)
       else
-        puts "overwrite #{dest}? [ynaq] "
+        puts "overwrite #{dest}? [ynadq] "
         case $stdin.gets.chomp
         when 'a'
           replace_all = true
           replace_file(file, dest)
         when 'y'
           replace_file(file, dest)
+        when 'd'
+          diff_file(file,dest)
         when 'q'
           exit
         else
@@ -43,6 +45,10 @@ task :install do
       end
     end
   }
+end
+
+def diff_file(file, orig)
+  %x[diff -i -b -U 5 #{file} #{orig}].split("\n").each {|l| puts l}
 end
 
 def replace_file(file, dest)
