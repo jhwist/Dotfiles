@@ -14,7 +14,7 @@ IRB.conf[:SAVE_HISTORY] = 100
 IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb-save-history"
 
 def cls
-  system('cls')
+  system('cls') || system('clear')
 end
 
 def reload
