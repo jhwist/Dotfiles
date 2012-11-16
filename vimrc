@@ -1,3 +1,29 @@
+"
+" ========================================================================
+" Vundle stuff
+" ========================================================================
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" Let Vundle manage Vundle (required)!
+Bundle 'gmarik/vundle'
+"
+" My bundles
+Bundle 'tpope/vim-pathogen'
+Bundle 'tpope/vim-cucumber'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'vim-ruby/vim-ruby'
+Bundle 'wincent/Command-T'
+"
+" Use Pathogen:
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+
+
 set nocompatible
 set nobackup
 set modeline
