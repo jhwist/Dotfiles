@@ -15,7 +15,7 @@ task :submit do
       puts "Unable to determine HOME directory. Forgot to export $HOME?"
     else
       source = "#{home}/.#{file}"
-      if File.exist?(source)
+      if File.exist?(source) and not Dir.exist?(source)
         if FileUtils.identical?(source,file)
           puts "'#{file}' is unchanged"
           next
