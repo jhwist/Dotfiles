@@ -11,5 +11,6 @@
   di = diff
   aa = add --all
   b = branch
+  submit = commit
 [merge]
   tool = vimdiff
