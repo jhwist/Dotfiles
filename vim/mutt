@@ -1,0 +1,8 @@
+set textwidth=78
+
+" The Attach me mode.
+map __a_start :imap <C-V><CR> <C-O>__a_cmd\|imap <C-V><ESC> <C-V><ESC>__a_end\|imap <C-V><C-V><C-V><C-I> <C-V><C-N>\|imap <C-V><C-N> <C-V><C-X><C-V><C-F><CR> 
+noremap __a_end :iunmap <C-V><CR>\|iunmap <C-V><ESC>\|iunmap <C-V><C-V><C-V><C-I>\|iunmap <C-V><C-V><C-V><C-N><CR>dd`a:"Attach mode ended.<CR>
+noremap __a_cmd oAttach:<Space>
+noremap __a_scmd 1G/^$/<CR>:noh<CR>OAttach:<Space>
+map ,a ma__a_start__a_scmd
