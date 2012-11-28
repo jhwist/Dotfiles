@@ -79,7 +79,7 @@ def diff_file(file, orig)
 end
 
 def replace_file(file, dest)
-  if !FileUtils.uptodate?(file, dest)
+  if !FileUtils.uptodate?(file, %w(dest))
     puts "Destination #{dest} is newer than source #{file}, skipping"
   else
     rm(dest)
