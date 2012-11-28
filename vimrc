@@ -122,7 +122,6 @@ function! CorrectTestRunner()
     return "ruby"
   endif
 endfunction
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -135,6 +134,8 @@ endif
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
   filetype plugin indent on
+    " Detect Perforce files
+    au BufRead,BufNewFile /tmp/tmp.\d\+.\d\+ set filetype=p4spec
 endif " has("autocmd")
 
 " this function remaps <CR> to __go
@@ -144,4 +145,4 @@ function! MapCR()
   map __go :unmap <CR>gf:cd %:h
 endf
 
-" vim: set ft=vim :
+" vim: set ft=vim : nospell
