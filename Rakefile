@@ -30,7 +30,7 @@ task :submit do
   }
   puts "Done."
   puts "Here is what's changed:"
-  system("git diff")
+  system("git diff --cached")
 end
 
 desc "Install dotfiles in user's HOME directory"
