@@ -1,10 +1,37 @@
 # Rakefile
+# vim: set ft=ruby nospell :
 # inspired by https://github.com/ryanb/dotfiles/blob/master/Rakefile
 #
 
 require 'fileutils'
 
 task :default => :install
+
+desc "Submit changed files to git"
+task :submit do
+  (Dir.glob("*") - ["README", "Rakefile"]).each {|file|
+    home = ENV['HOME']
+    if home.nil?
+      puts "Unable to determine HOME directory. Forgot to export $HOME?"
+    else
+      source = "#{home}/.#{file}"
+      if File.exist?(source)
+        if FileUtils.identical?(source,file)
+          puts "'#{file}' is unchanged"
+          next
+        end
+        if FileUtils.uptodate?(source, %w(file))
+          puts "copying '#{source}' to '#{file}'"
+          copy(source, file)
+          `git add #{file}`
+        end
+      end
+    end
+  }
+  puts "Done."
+  puts "Here is what's changed:"
+  system("git diff")
+end
 
 desc "Install dotfiles in user's HOME directory"
 task :install do
