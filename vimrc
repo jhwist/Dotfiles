@@ -25,6 +25,7 @@ call pathogen#helptags()
 let ackprg = 'ag --column --nocolor --ignore log'
 set grepprg=ag\ --column\ --nocolor\ --ignore\ log'
 
+set nonumber
 set nocompatible
 set nobackup
 set modeline
@@ -35,6 +36,7 @@ set nohlsearch
 set autoindent
 set cindent
 set showmatch
+set showmode
 set showcmd
 set visualbell
 set nowrap
@@ -136,7 +138,13 @@ if has("autocmd")
   filetype plugin indent on
     " Detect Perforce files
     au BufRead,BufNewFile /tmp/tmp.\d\+.\d\+ set filetype=p4spec
-endif " has("autocmd")
+    au BufNewFile,BufRead  /tmp/mutt* source ~/.vim/mutt
+    au BufNewFile,BufRead  [Mm]akefile* set nosmarttab
+    au BufReadPre */src/*  set patchmode=.orig
+    au BufReadPre /var/log/* set nowrap
+    au BufReadPre *.log set nowrap
+    au BufReadPre */usr/ports/*  set patchmode=.orig
+  endif " has("autocmd")
 
 " this function remaps <CR> to __go
 " __go unmaps <CR> and calls "gf" (go file)
@@ -144,5 +152,12 @@ function! MapCR()
   map <CR> __go
   map __go :unmap <CR>gf:cd %:h
 endf
+
+" The famous vim-shell
+map __start :imap  __cmd|imap  __end
+noremap __end :iunmap <CR>|iunmap :"Vish ended.0f!xx
+noremap __cmd 0f$ly$:r !";echo $PS1A 
+noremap __scmd :r !echo $PS1A 
+map ,S __start__scmd
 
 " vim: set ft=vim : nospell
