@@ -10,6 +10,8 @@ Bundle 'gmarik/vundle'
 " My bundles
 Bundle 'tpope/vim-pathogen'
 Bundle 'tpope/vim-cucumber'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-rails'
 Bundle 'ecomba/vim-ruby-refactoring'
@@ -22,6 +24,7 @@ call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
 let ackprg = 'ag --column --nocolor --ignore log'
+set grepprg=ag\ --column\ --nocolor\ --ignore\ log'
 
 set nocompatible
 set nobackup
