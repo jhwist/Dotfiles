@@ -43,7 +43,7 @@ task :install do
       puts "Unable to determine HOME directory. Forgot to export $HOME?"
     else
       dest = "#{home}/.#{file}"
-      if File.exist?(dest)
+      if File.exist?(dest) and not Dir.exist?(dest)
         if FileUtils.identical?(file,dest)
           puts "skipping identical '#{file}'"
           next
