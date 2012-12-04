@@ -54,10 +54,18 @@ set noesckeys
 set nofoldenable
 command! Q q 
 
+map <Left> <Nop>
+map <Right> <Nop>
+map <Up> <Nop>
+map <Down> <Nop>
+
+:let mapleader = ","
 nmap <Leader>bi :source ~/.vimrc<cr>:BundleInstall<cr>
 map <Leader>o :call RunCurrentLineInTest()<CR>
 map <Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
 map <Leader>t :call RunCurrentTest()<CR>
+map <Leader>a :AS<CR>
+:let mapleader = "\\"
 
 function! RenameFile()
     let old_name = expand('%')
@@ -68,7 +76,7 @@ function! RenameFile()
         redraw!
     endif
 endfunction
-map ,n :call RenameFile()<cr>
+map <Leader>n :call RenameFile()<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Test-running stuff
