@@ -34,5 +34,5 @@ git_prompt() {
     echo ${GIT_PROMPT}
   fi
 }
-PS1="\h:\W\$(git_prompt) \u\$ "
+PS1="\u@\h:\W\$(git_prompt)\$ "
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
