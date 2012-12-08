@@ -47,7 +47,7 @@ set shiftwidth=2
 set laststatus=2
 set wrapscan
 set autowrite
-set spell
+set nospell
 set spellfile=~/.vim-spell.utf.add
 set gdefault
 set noesckeys
