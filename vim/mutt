@@ -1,6 +1,8 @@
 set textwidth=78
 set spell
 set noai
+set nocindent
+sy off
 
 " The Attach me mode.
 map __a_start :imap <C-V><CR> <C-O>__a_cmd\|imap <C-V><ESC> <C-V><ESC>__a_end\|imap <C-V><C-V><C-V><C-I> <C-V><C-N>\|imap <C-V><C-N> <C-V><C-X><C-V><C-F><CR> 
