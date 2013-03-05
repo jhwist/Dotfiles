@@ -15,3 +15,5 @@
   pl = log --pretty=format:"%h%x09%an%x09%ad%x09%s"
 [merge]
   tool = vimdiff
+[pull]
+	rebase = true
