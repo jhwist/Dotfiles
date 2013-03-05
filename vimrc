@@ -52,6 +52,7 @@ set spellfile=~/.vim-spell.utf.add
 set gdefault
 set noesckeys
 set nofoldenable
+set noequalalways
 command! Q q 
 
 " Educate myself
