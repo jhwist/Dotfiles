@@ -54,8 +54,7 @@ set gdefault
 set noesckeys
 set nofoldenable
 set equalalways
-match Todo /\s\+s$/
-command! Q q 
+command! Q q
 
 " Educate myself
 map <Left> <Nop>
@@ -162,6 +161,7 @@ endif
 if has("autocmd")
   filetype plugin indent on
     " Detect Perforce files
+    au BufWinEnter * match Todo /\s\+$/
     au BufRead,BufNewFile /tmp/tmp.\d\+.\d\+ set filetype=p4spec
     au BufNewFile,BufRead  /tmp/mutt* source ~/.vim/mutt
     au BufNewFile,BufRead  [Mm]akefile* set nosmarttab
@@ -181,8 +181,8 @@ endf
 " The famous vim-shell
 map __start :imap  __cmd|imap  __end
 noremap __end :iunmap <CR>|iunmap :"Vish ended.0f!xx
-noremap __cmd 0f$ly$:r !";echo $PS1A 
-noremap __scmd :r !echo $PS1A 
+noremap __cmd 0f$ly$:r !";echo $PS1A
+noremap __scmd :r !echo $PS1A
 map ,S __start__scmd
 
 " vim: set ft=vim : nospell
