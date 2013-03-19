@@ -13,6 +13,7 @@ Bundle 'tpope/vim-cucumber'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-bundler'
+Bundle 'tpope/vim-markdown'
 Bundle 'ecomba/vim-ruby-refactoring'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'kien/ctrlp.vim'
@@ -52,7 +53,8 @@ set spellfile=~/.vim-spell.utf.add
 set gdefault
 set noesckeys
 set nofoldenable
-set noequalalways
+set equalalways
+match Todo /\s\+s$/
 command! Q q 
 
 " Educate myself
@@ -83,6 +85,15 @@ function! RenameFile()
         redraw!
     endif
 endfunction
+
+function! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+
+autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Test-running stuff
