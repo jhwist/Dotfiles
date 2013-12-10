@@ -5,6 +5,10 @@ then
   source /etc/bash.bashrc
 fi
 
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    . /etc/bash_completion
+fi
+source ~/bin/p4-completion.bash
 source ~/bin/git-completion.bash
 
 alias vi=vim

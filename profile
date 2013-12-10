@@ -27,3 +27,7 @@ shopt -s histappend
 export P4PORT=descode:1666
 export P4USER=henrik.wist
 export P4CONFIG=.p4config
+export TRELLO_BOARD=510a3902bce28e4a38002089
+export TRELLO_KEY=c9c2eca40e4825d997632bc70dd18857
+export TRELLO_TOKEN=dab6de31d35f2bab7478d5af11a883168cab26b8528c2352cd0db36b53003d05
+export TRELLO_CARD=510a487bdf52f3cd0c001075
