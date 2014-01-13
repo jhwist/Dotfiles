@@ -20,7 +20,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'ack.vim'
 "
 " Use Pathogen:
-call pathogen#runtime_append_all_bundles()
+call pathogen#incubate()
 call pathogen#helptags()
 
 let ackprg = 'ag --column --nocolor --ignore log'
