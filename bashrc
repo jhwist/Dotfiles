@@ -8,8 +8,15 @@ fi
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
-source ~/bin/p4-completion.bash
-source ~/bin/git-completion.bash
+
+if [ -f ~/bin/p4-completion.bash ]; then
+  source ~/bin/p4-completion.bash
+fi
+
+if [ -f ~/bin/git-completion.bash ]; then
+  source ~/bin/git-completion.bash
+fi
+
 
 alias vi=vim
 
