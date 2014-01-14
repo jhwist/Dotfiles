@@ -13,6 +13,13 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
+# Prefer homebrew, but without emoji
+PATH="/usr/local/bin:$PATH"
+export HOMEBREW_NO_EMOJI
+
+# Set up rbenv
+which rbenv >/dev/null && eval "$(rbenv init -)"
+
 # Unbreak broken, non-colored terminal
 export TERM='xterm-color'
 export GREP_OPTIONS="--color"
