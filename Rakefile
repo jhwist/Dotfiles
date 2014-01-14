@@ -10,65 +10,63 @@ task :default => :install
 desc "Submit changed files to git"
 task :submit do
   (Dir.glob("*") - ["README", "Rakefile"]).each {|file|
-    home = ENV['HOME']
-    if home.nil?
-      puts "Unable to determine HOME directory. Forgot to export $HOME?"
-    else
-      source = "#{home}/.#{file}"
-      if File.exist?(source) and not Dir.exist?(source)
-        if FileUtils.identical?(source,file)
-          puts "'#{file}' is unchanged"
-          next
-        end
-        if FileUtils.uptodate?(source, %w(file))
-          puts "copying '#{source}' to '#{file}'"
-          copy(source, file)
-          `git add #{file}`
-        end
-      end
-    end
+    source = "#{Dir.home()}/.#{file}"
+    update(source, file) if File.exist?(source) and not File.directory?(file)
+    handle_directory(file) if File.directory?(file)
   }
-  puts "Done."
   puts "Here is what's changed:"
-  system("git diff --cached")
+  #system("git diff --cached|less")
+end
+
+def update(from, to)
+  if FileUtils.identical?(from, to)
+    puts "'#{from}' is unchanged"
+  else FileUtils.uptodate?(from, %w(to))
+    copy(from, to)
+    `git add #{to}`
+  end
+end
+
+def handle_directory dir
+  puts "Looking at #{dir}"
+  Dir.glob("#{Dir.home()}/#{dir}/*").each {|file|
+    puts "Checking #{file} (#{File.basename(file)})"
+    update(file, File.join(dir, File.basename(file)))
+  }
 end
 
 desc "Install dotfiles in user's HOME directory"
 task :install do
   replace_all = false
 
-  (Dir.glob("*") - ["README", "Rakefile"]).each {|file|
-    home = ENV['HOME']
-    if home.nil?
-      puts "Unable to determine HOME directory. Forgot to export $HOME?"
-    else
-      dest = "#{home}/.#{file}"
-      if File.exist?(dest) and not Dir.exist?(dest)
-        if FileUtils.identical?(file,dest)
-          puts "skipping identical '#{file}'"
-          next
-        end
+  (Dir.glob("**/*") - ["README", "Rakefile"]).each {|file|
+    dest = "#{Dir.home()}/.#{file}"
+    next if File.directory?(file)
+    if File.exist?(dest)
+      if FileUtils.identical?(file,dest)
+        puts "skipping identical '#{file}'"
+        next
       end
-      if !File.exist?(dest) 
-        puts "copying #{file} to #{dest}"
-        copy(file, dest)
-      elsif replace_all
-        replace_file(file,dest)
+    end
+    if !File.exist?(dest)
+      puts "copying #{file} to #{dest}"
+      copy(file, dest)
+    elsif replace_all
+      replace_file(file,dest)
+    else
+      puts "overwrite #{dest}? [ynadq] "
+      case $stdin.gets.chomp
+      when 'a'
+        replace_all = true
+        replace_file(file, dest)
+      when 'y'
+        replace_file(file, dest)
+      when 'd'
+        diff_file(file,dest)
+      when 'q'
+        exit
       else
-        puts "overwrite #{dest}? [ynadq] "
-        case $stdin.gets.chomp
-        when 'a'
-          replace_all = true
-          replace_file(file, dest)
-        when 'y'
-          replace_file(file, dest)
-        when 'd'
-          diff_file(file,dest)
-        when 'q'
-          exit
-        else
-          puts "skipping #{dest}"
-        end
+        puts "skipping #{dest}"
       end
     end
   }
