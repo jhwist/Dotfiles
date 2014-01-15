@@ -1,4 +1,4 @@
-colorscheme desert
+colorscheme solarized
 set guioptions-=T
 
 set columns=80

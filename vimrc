@@ -155,6 +155,8 @@ endfunction
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
   syntax on
+  set background=light
+  colorscheme solarized
 endif
 
 " Only do this part when compiled with support for autocommands.
