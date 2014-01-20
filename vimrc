@@ -155,7 +155,7 @@ endfunction
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
   syntax on
-  set background=light
+  set background=dark
   colorscheme solarized
 endif
 
