@@ -10,32 +10,30 @@ task :default => :install
 desc "Submit changed files to git"
 task :submit do
   (Dir.glob("{*,.*}") - ["README", "Rakefile", ".git", "..", "."]).each {|file|
+    puts "Checking for updates to #{file}"
     source = "#{Dir.home()}/.#{file}"
     update(source, file) if File.exist?(source) and not File.directory?(file)
     handle_directory(file) if File.directory?(file)
   }
-  puts "Here is what's changed:"
-  system("git diff --cached|less")
 end
 
 def update(from, to)
-  if FileUtils.identical?(from, to)
-    puts "'#{from}' is unchanged"
-  else FileUtils.uptodate?(from, %w(to))
+  if FileUtils.uptodate?(to, %w(from)) or not File.exist?(to)
     copy(from, to)
     `git add #{to}`
+  elsif FileUtils.identical?(from, to)
+    puts "'#{from}' is unchanged"
   end
 end
 
 def handle_directory dir
   Dir.glob("#{Dir.home()}/#{dir}/*").each {|file|
-    puts "Checking #{file} (#{File.basename(file)})"
     dest = File.join(dir, File.basename(file))
     if File.directory?(file)
       handle_directory(file)
       next
     end
-    update(file, dest) if File.exist?(dest)
+    update(file, dest)
   }
 end
 
