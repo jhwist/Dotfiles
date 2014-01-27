@@ -143,5 +143,5 @@ set pgp_list_pubring_command="pgpring -2 %r"
 set pgp_list_secring_command="pgpring -s -2 %r"
 
 source ~/.mutt/alias.muttrc
-source ~/.mutt/mutt-colors-solarized-dark-256.muttrc
+source ~/.mutt/mutt-colors-solarized-dark-16.muttrc
 source ~/.mutt/credentials.muttrc
