@@ -12,13 +12,12 @@ fi
 if [ -f ~/bin/p4-completion.bash ]; then
   source ~/bin/p4-completion.bash
 fi
-
 if [ -f ~/bin/git-completion.bash ]; then
   source ~/bin/git-completion.bash
 fi
 
-
 alias vi=vim
+alias ls="ls --color"
 
 function minutes_since_last_commit {
   now=`date +%s`
