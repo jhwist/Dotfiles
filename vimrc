@@ -48,6 +48,7 @@ set shiftwidth=2
 set laststatus=2
 set wrapscan
 set autowrite
+set autoread
 set nospell
 set spellfile=~/.vim-spell.utf.add
 set gdefault
@@ -73,6 +74,7 @@ map <Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
 map <Leader>t :call RunCurrentTest()<CR>
 map <Leader>a :AS<CR>
 map <Leader>n :call RenameFile()<cr>
+map <Leader>w :!chmod +w %<cr><cr>
 let mapleader = "\\"
 
 function! RenameFile()
