@@ -1,6 +1,6 @@
 # these should cover all the relevant addresses
 alternates goose@*\.muffin\.org,goose@*\.42\.org,wist@*\.tu-muenchen\.de,wist@*\.tum\.de,wist@*\.[Mm]u[Ff][Ff]i[Nn]\.[Oo]rg,wist@*\.titanias\.org,goose@*\.titanias\.org,wist@acm\.org,jhwist@pobox\.com
-alternative_order text/plain
+alternative_order text/plain text/enriched text/html
 auto_view text/html
 
 # headers I don't want to see
@@ -95,6 +95,7 @@ set sort="threads"
 set read_inc=20
 set sendmail_wait=-1
 set reply_regexp="^((re|r e|aw|antw.|antwort):[ \t]*)*"
+set mailcap_path="~/.mutt/mailcap"
 # set web_browser="lynx %s"
 #set web_xbrowser="netscape -remote 'openURL(%s)'"
 
