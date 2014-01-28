@@ -58,7 +58,7 @@ desc "Install dotfiles in user's HOME directory"
 task :install do
   @replace_all = false
 
-  (Dir.glob("{*,.*}") - ["README", "Rakefile", ".git", "..", "."]).each {|file|
+  (Dir.glob("{*,.*}") - ["README", "Rakefile", ".git", ".gitignore", "..", "."]).each {|file|
     puts "Looking at #{file}"
     if File.directory?(file)
       update_directory(file)
