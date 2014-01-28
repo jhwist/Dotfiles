@@ -24,7 +24,7 @@ call pathogen#incubate()
 call pathogen#helptags()
 
 let ackprg = 'ag --column --nocolor --ignore log'
-set grepprg=ag\ --column\ --nocolor\ --ignore\ log'
+set grepprg=ag\ --column\ --nocolor\ --ignore\ log
 
 set nonumber
 set nocompatible
