@@ -26,6 +26,8 @@ call pathogen#helptags()
 let ackprg = 'ag --column --nocolor --ignore log'
 set grepprg=ag\ --column\ --nocolor\ --ignore\ log
 
+set wildignore=*.db
+set history=10000
 set nonumber
 set nocompatible
 set nobackup
