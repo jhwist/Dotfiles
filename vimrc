@@ -57,6 +57,8 @@ set gdefault
 set noesckeys
 set nofoldenable
 set equalalways
+set switchbuf=useopen
+:set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
 command! Q q
 
 " Educate myself
